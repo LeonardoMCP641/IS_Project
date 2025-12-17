@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Http;
 using WebAPI.Helpers;
 using WebAPI.Models;
@@ -7,9 +6,6 @@ using WebAPI.Resources;
 
 namespace WebAPI.Controllers
 {
-    /// <summary>
-    /// Controller responsible for managing Subscriptions.
-    /// </summary>
     [RoutePrefix("applications/{appName}/containers/{containerName}/subscriptions")]
     public class SubscriptionsController : ApiController
     {
@@ -18,20 +14,19 @@ namespace WebAPI.Controllers
         [Route("")]
         public IHttpActionResult GetSubscriptions(string appName, string containerName)
         {
-            // Validate application
             var app = ApplicationSQLHelper.GetApplication(appName);
             if (app == null)
                 return NotFound();
 
-            // Validate container
             var container = ContainerSQLHelper.GetContainer(app.Id, containerName);
             if (container == null)
                 return NotFound();
 
-            // Get subscriptions
             var subs = SubscriptionSQLHelper.GetSubscriptions(container.Id)
                 .Select(s => new SubscriptionResource
                 {
+                    resource_name = s.ResourceName,
+                    evt = s.Evt,
                     endpoint = s.Endpoint,
                     creation_datetime = s.CreationDateTime
                         .ToString("yyyy-MM-ddTHH:mm:ss")
@@ -48,24 +43,27 @@ namespace WebAPI.Controllers
             string containerName,
             [FromBody] SubscriptionResource resource)
         {
-            // Validate body
-            if (resource == null || string.IsNullOrWhiteSpace(resource.endpoint))
-                return BadRequest("Subscription endpoint is required.");
+            // 🔴 Enunciado: validar TODOS os campos
+            if (resource == null ||
+                string.IsNullOrWhiteSpace(resource.resource_name) ||
+                string.IsNullOrWhiteSpace(resource.endpoint))
+            {
+                return BadRequest("resource_name and endpoint are required.");
+            }
 
-            // Validate application
             var app = ApplicationSQLHelper.GetApplication(appName);
             if (app == null)
                 return NotFound();
 
-            // Validate container
             var container = ContainerSQLHelper.GetContainer(app.Id, containerName);
             if (container == null)
                 return NotFound();
 
-            // Create subscription
             var sub = SubscriptionSQLHelper.CreateSubscription(
                 new Subscription
                 {
+                    ResourceName = resource.resource_name,
+                    Evt = resource.evt,
                     Endpoint = resource.endpoint,
                     ContainerId = container.Id
                 });
@@ -73,9 +71,10 @@ namespace WebAPI.Controllers
             if (sub == null)
                 return BadRequest("Could not create subscription.");
 
-            // Return resource
             return Created("", new SubscriptionResource
             {
+                resource_name = sub.ResourceName,
+                evt = sub.Evt,
                 endpoint = sub.Endpoint,
                 creation_datetime = sub.CreationDateTime
                     .ToString("yyyy-MM-ddTHH:mm:ss")
@@ -90,17 +89,14 @@ namespace WebAPI.Controllers
             string containerName,
             int id)
         {
-            // Validate application
             var app = ApplicationSQLHelper.GetApplication(appName);
             if (app == null)
                 return NotFound();
 
-            // Validate container
             var container = ContainerSQLHelper.GetContainer(app.Id, containerName);
             if (container == null)
                 return NotFound();
 
-            // Delete subscription
             var deleted = SubscriptionSQLHelper.DeleteSubscription(id);
             if (deleted == null)
                 return NotFound();

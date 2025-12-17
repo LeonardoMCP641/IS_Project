@@ -6,11 +6,17 @@ using System.Xml.Serialization;
 
 namespace WebAPI.Resources
 {
-    [XmlRoot("contentInstance")]
+    [XmlRoot("content-instance")]
     public class ContentInstanceResource
     {
-        public string res_type { get; set; } = "contentInstance";
+        public string res_type { get; set; } = "content-instance";
+
+        public string resource_name { get; set; }
+
+        public string content_type { get; set; }
+
         public string content { get; set; }
+
         public string creation_datetime { get; set; }
     }
 }

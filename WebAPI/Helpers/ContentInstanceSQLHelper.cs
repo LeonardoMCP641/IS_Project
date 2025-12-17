@@ -6,9 +6,6 @@ using WebAPI.Models;
 
 namespace WebAPI.Helpers
 {
-    /// <summary>
-    /// Data access helper for ContentInstance resources.
-    /// </summary>
     public class ContentInstanceSQLHelper
     {
         private static readonly string ConnectionString =
@@ -20,7 +17,7 @@ namespace WebAPI.Helpers
             var list = new List<ContentInstance>();
 
             const string query =
-                "SELECT Id, Content, CreationDateTime, ContainerId " +
+                "SELECT Id, ResourceName, ContentType, Content, CreationDateTime, ContainerId " +
                 "FROM ContentInstances WHERE ContainerId = @cid";
 
             using (var conn = new SqlConnection(ConnectionString))
@@ -43,7 +40,7 @@ namespace WebAPI.Helpers
         public static ContentInstance GetContentInstance(int id)
         {
             const string query =
-                "SELECT Id, Content, CreationDateTime, ContainerId " +
+                "SELECT Id, ResourceName, ContentType, Content, CreationDateTime, ContainerId " +
                 "FROM ContentInstances WHERE Id = @id";
 
             using (var conn = new SqlConnection(ConnectionString))
@@ -62,29 +59,36 @@ namespace WebAPI.Helpers
         // POST /applications/{appId}/containers/{containerId}/contentInstances
         public static ContentInstance CreateContentInstance(ContentInstance ci)
         {
-            if (ci == null)
-                return null;
-
-            if (string.IsNullOrWhiteSpace(ci.Content))
+            if (ci == null ||
+                string.IsNullOrWhiteSpace(ci.ResourceName) ||
+                string.IsNullOrWhiteSpace(ci.ContentType) ||
+                string.IsNullOrWhiteSpace(ci.Content))
                 return null;
 
             if (ci.CreationDateTime == default)
                 ci.CreationDateTime = DateTime.UtcNow;
 
             const string insert =
-                "INSERT INTO ContentInstances (Content, CreationDateTime, ContainerId) " +
-                "VALUES (@content, @dt, @cid)";
+                "INSERT INTO ContentInstances " +
+                "(ResourceName, ContentType, Content, CreationDateTime, ContainerId) " +
+                "VALUES (@rn, @ct, @content, @dt, @cid)";
 
             using (var conn = new SqlConnection(ConnectionString))
             using (var cmd = new SqlCommand(insert, conn))
             {
+                cmd.Parameters.AddWithValue("@rn", ci.ResourceName);
+                cmd.Parameters.AddWithValue("@ct", ci.ContentType);
                 cmd.Parameters.AddWithValue("@content", ci.Content);
                 cmd.Parameters.AddWithValue("@dt", ci.CreationDateTime);
                 cmd.Parameters.AddWithValue("@cid", ci.ContainerId);
 
                 conn.Open();
 
-                return cmd.ExecuteNonQuery() > 0 ? ci : null;
+                return cmd.ExecuteNonQuery() > 0
+                    ? GetContentInstance(
+                        Convert.ToInt32(
+                            new SqlCommand("SELECT SCOPE_IDENTITY()", conn).ExecuteScalar()))
+                    : null;
             }
         }
 
@@ -114,6 +118,8 @@ namespace WebAPI.Helpers
             return new ContentInstance
             {
                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                ResourceName = reader.GetString(reader.GetOrdinal("ResourceName")),
+                ContentType = reader.GetString(reader.GetOrdinal("ContentType")),
                 Content = reader.GetString(reader.GetOrdinal("Content")),
                 CreationDateTime = reader.GetDateTime(reader.GetOrdinal("CreationDateTime")),
                 ContainerId = reader.GetInt32(reader.GetOrdinal("ContainerId"))

@@ -27,10 +27,19 @@ namespace WebAPI.Controllers
 
         [HttpPost]
         [Route("")]
-        public IHttpActionResult CreateApplication()
+        public IHttpActionResult CreateApplication([FromBody] ApplicationResource resource)
         {
-            var app = ApplicationSQLHelper.CreateApplication(new Application());
-            if (app == null) return BadRequest();
+            if (resource == null || string.IsNullOrWhiteSpace(resource.resource_name))
+                return BadRequest("resource_name is required");
+
+            var app = ApplicationSQLHelper.CreateApplication(
+                new Application
+                {
+                    ResourceName = resource.resource_name
+                });
+
+            if (app == null)
+                return BadRequest();
 
             return Created("", new ApplicationResource
             {

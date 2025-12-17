@@ -10,7 +10,13 @@ namespace WebAPI.Resources
     public class SubscriptionResource
     {
         public string res_type { get; set; } = "subscription";
+
+        public string resource_name { get; set; }
+
+        public int evt { get; set; }
+
         public string endpoint { get; set; }
+
         public string creation_datetime { get; set; }
     }
 }

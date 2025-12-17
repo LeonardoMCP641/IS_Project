@@ -6,9 +6,6 @@ using WebAPI.Models;
 
 namespace WebAPI.Helpers
 {
-    /// <summary>
-    /// Data access helper for Subscription resources.
-    /// </summary>
     public class SubscriptionSQLHelper
     {
         private static readonly string ConnectionString =
@@ -20,7 +17,7 @@ namespace WebAPI.Helpers
             var list = new List<Subscription>();
 
             const string query =
-                "SELECT Id, Endpoint, CreationDateTime, ContainerId " +
+                "SELECT Id, ResourceName, Evt, Endpoint, CreationDateTime, ContainerId " +
                 "FROM Subscriptions WHERE ContainerId = @cid";
 
             using (var conn = new SqlConnection(ConnectionString))
@@ -43,7 +40,7 @@ namespace WebAPI.Helpers
         public static Subscription GetSubscription(int id)
         {
             const string query =
-                "SELECT Id, Endpoint, CreationDateTime, ContainerId " +
+                "SELECT Id, ResourceName, Evt, Endpoint, CreationDateTime, ContainerId " +
                 "FROM Subscriptions WHERE Id = @id";
 
             using (var conn = new SqlConnection(ConnectionString))
@@ -62,29 +59,35 @@ namespace WebAPI.Helpers
         // POST /applications/{appId}/containers/{containerId}/subscriptions
         public static Subscription CreateSubscription(Subscription sub)
         {
-            if (sub == null)
-                return null;
-
-            if (string.IsNullOrWhiteSpace(sub.Endpoint))
+            if (sub == null ||
+                string.IsNullOrWhiteSpace(sub.ResourceName) ||
+                string.IsNullOrWhiteSpace(sub.Endpoint))
                 return null;
 
             if (sub.CreationDateTime == default)
                 sub.CreationDateTime = DateTime.UtcNow;
 
             const string insert =
-                "INSERT INTO Subscriptions (Endpoint, CreationDateTime, ContainerId) " +
-                "VALUES (@ep, @dt, @cid)";
+                "INSERT INTO Subscriptions " +
+                "(ResourceName, Evt, Endpoint, CreationDateTime, ContainerId) " +
+                "VALUES (@rn, @evt, @ep, @dt, @cid)";
 
             using (var conn = new SqlConnection(ConnectionString))
             using (var cmd = new SqlCommand(insert, conn))
             {
+                cmd.Parameters.AddWithValue("@rn", sub.ResourceName);
+                cmd.Parameters.AddWithValue("@evt", sub.Evt);
                 cmd.Parameters.AddWithValue("@ep", sub.Endpoint);
                 cmd.Parameters.AddWithValue("@dt", sub.CreationDateTime);
                 cmd.Parameters.AddWithValue("@cid", sub.ContainerId);
 
                 conn.Open();
 
-                return cmd.ExecuteNonQuery() > 0 ? sub : null;
+                return cmd.ExecuteNonQuery() > 0
+                    ? GetSubscription(
+                        Convert.ToInt32(
+                            new SqlCommand("SELECT SCOPE_IDENTITY()", conn).ExecuteScalar()))
+                    : null;
             }
         }
 
@@ -114,6 +117,8 @@ namespace WebAPI.Helpers
             return new Subscription
             {
                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                ResourceName = reader.GetString(reader.GetOrdinal("ResourceName")),
+                Evt = reader.GetInt32(reader.GetOrdinal("Evt")),
                 Endpoint = reader.GetString(reader.GetOrdinal("Endpoint")),
                 CreationDateTime = reader.GetDateTime(reader.GetOrdinal("CreationDateTime")),
                 ContainerId = reader.GetInt32(reader.GetOrdinal("ContainerId"))
