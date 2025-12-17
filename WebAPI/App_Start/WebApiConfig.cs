@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace WebAPI
 {
@@ -10,14 +6,18 @@ namespace WebAPI
     {
         public static void Register(HttpConfiguration config)
         {
-            // Enable attribute routing (required by SOMIOD)
+            // ATTRIBUTE ROUTING (OBRIGATÓRIO)
             config.MapHttpAttributeRoutes();
 
-            // Optional: force XML as default (recommended for SOMIOD)
-            config.Formatters.Remove(config.Formatters.JsonFormatter);
+            // Fallback (opcional)
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
 
-            // Enable detailed errors during development
-            config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
+            // JSON only (opcional mas recomendado)
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
         }
     }
 }

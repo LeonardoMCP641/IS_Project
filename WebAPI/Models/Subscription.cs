@@ -1,25 +1,45 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace WebAPI.Models
 {
     public class Subscription
     {
+
+        [JsonProperty("res-type")]
+        public string ResType => "subscription";
+
         [Key]
+        [Newtonsoft.Json.JsonIgnore]
         public int Id { get; set; }
 
-        [Required]
-        public string ResourceName { get; set; }   
+        
+        [JsonProperty("resource-name")]
+        public string ResourceName { get; set; }
 
         [Required]
-        public int Evt { get; set; }               
+        [JsonProperty("evt")]
+        [Range(1, 2)]
+        public int Evt { get; set; }
 
         [Required]
-        public string Endpoint { get; set; }      
+        [JsonProperty("endpoint")]
+        public string Endpoint { get; set; }
 
-        [Required]
-        public DateTime CreationDateTime { get; set; }
+        [JsonProperty("creation-datetime")]
+        [Newtonsoft.Json.JsonIgnore]
+        public string CreationDateTime { get; set; } = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
 
+        [ForeignKey("Container")]
+        [Newtonsoft.Json.JsonIgnore]
         public int ContainerId { get; set; }
+
+        [Newtonsoft.Json.JsonIgnore]
+        public virtual Container Container { get; set; }
+
+
     }
 }

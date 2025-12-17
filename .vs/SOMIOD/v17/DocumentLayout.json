@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|c:\\users\\paulo\\desktop\\is\\webapi\\webapi\\helpers\\mosquittohelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|solutionrelative:webapi\\helpers\\mosquittohelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|c:\\users\\paulo\\desktop\\is\\webapi\\webapi\\controllers\\somiodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|solutionrelative:webapi\\controllers\\somiodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|c:\\users\\paulo\\desktop\\is\\webapi\\webapi\\helpers\\subscriptionsqlhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|solutionrelative:webapi\\helpers\\subscriptionsqlhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|c:\\users\\paulo\\desktop\\is\\webapi\\webapi\\helpers\\contentinstancesqlhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|solutionrelative:webapi\\helpers\\contentinstancesqlhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|c:\\users\\paulo\\desktop\\is\\webapi\\webapi\\helpers\\containersqlhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|solutionrelative:webapi\\helpers\\containersqlhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|c:\\users\\paulo\\desktop\\is\\webapi\\webapi\\models\\subscription.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|solutionrelative:webapi\\models\\subscription.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 201,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -45,55 +37,33 @@
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MosquittoHelper.cs",
-              "DocumentMoniker": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Helpers\\MosquittoHelper.cs",
-              "RelativeDocumentMoniker": "WebAPI\\Helpers\\MosquittoHelper.cs",
-              "ToolTip": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Helpers\\MosquittoHelper.cs",
-              "RelativeToolTip": "WebAPI\\Helpers\\MosquittoHelper.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAkwDsAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T17:31:13.183Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "SubscriptionSQLHelper.cs",
-              "DocumentMoniker": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Helpers\\SubscriptionSQLHelper.cs",
-              "RelativeDocumentMoniker": "WebAPI\\Helpers\\SubscriptionSQLHelper.cs",
-              "ToolTip": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Helpers\\SubscriptionSQLHelper.cs",
-              "RelativeToolTip": "WebAPI\\Helpers\\SubscriptionSQLHelper.cs",
-              "ViewState": "AgIAAGQAAAAAAAAAAAAowIAAAAAAAAAAAAAAAA==",
+              "Title": "Subscription.cs",
+              "DocumentMoniker": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Models\\Subscription.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Models\\Subscription.cs",
+              "ToolTip": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Models\\Subscription.cs",
+              "RelativeToolTip": "WebAPI\\Models\\Subscription.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAgwCYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T17:30:05.374Z",
+              "WhenOpened": "2025-12-17T22:54:26.702Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ContentInstanceSQLHelper.cs",
-              "DocumentMoniker": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Helpers\\ContentInstanceSQLHelper.cs",
-              "RelativeDocumentMoniker": "WebAPI\\Helpers\\ContentInstanceSQLHelper.cs",
-              "ToolTip": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Helpers\\ContentInstanceSQLHelper.cs",
-              "RelativeToolTip": "WebAPI\\Helpers\\ContentInstanceSQLHelper.cs",
-              "ViewState": "AgIAAGUAAAAAAAAAAAAowIEAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "SomiodController.cs",
+              "DocumentMoniker": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Controllers\\SomiodController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\SomiodController.cs",
+              "ToolTip": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Controllers\\SomiodController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\SomiodController.cs",
+              "ViewState": "AgIAAKgAAAAAAAAAAAAWwLQAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T17:27:48.037Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ContainerSQLHelper.cs",
-              "DocumentMoniker": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Helpers\\ContainerSQLHelper.cs",
-              "RelativeDocumentMoniker": "WebAPI\\Helpers\\ContainerSQLHelper.cs",
-              "ToolTip": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Helpers\\ContainerSQLHelper.cs",
-              "RelativeToolTip": "WebAPI\\Helpers\\ContainerSQLHelper.cs",
-              "ViewState": "AgIAAGkAAAAAAAAAAAAkwHoAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T17:26:48.123Z",
+              "WhenOpened": "2025-12-17T22:47:58.93Z",
               "EditorCaption": ""
             }
           ]
