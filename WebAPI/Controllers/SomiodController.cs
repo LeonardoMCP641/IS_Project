@@ -369,7 +369,8 @@ namespace WebAPI.Controllers
             db.ContentInstances.Add(ci);
             db.SaveChanges();
 
-            mqtt.PublishContentInstanceEvent(appRn, contRn, ci.ResourceName, 1);
+            mqtt.NotifyContentInstanceEvent(appRn,contRn,ci.ResourceName,ci.ContentType,ci.Content,1);
+
 
             return Content(HttpStatusCode.Created, ci);
         }
@@ -409,7 +410,8 @@ namespace WebAPI.Controllers
             db.ContentInstances.Remove(ci);
             db.SaveChanges();
 
-            mqtt.PublishContentInstanceEvent(appRn, contRn, ciRn, 2);
+            mqtt.NotifyContentInstanceEvent(appRn,contRn,ci.ResourceName,ci.ContentType,ci.Content,2);
+
 
             return StatusCode(HttpStatusCode.NoContent);
         }
