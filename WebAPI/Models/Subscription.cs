@@ -22,7 +22,7 @@ namespace WebAPI.Models
 
         [Required]
         [JsonProperty("evt")]
-        [Range(1, 2)]
+        [Range(1,3)]
         public int Evt { get; set; }
 
         [Required]

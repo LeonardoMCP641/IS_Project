@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|solutionrelative:webapi\\controllers\\somiodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|c:\\users\\paulo\\desktop\\is\\webapi\\webapi\\services\\mqttnotificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|solutionrelative:webapi\\services\\mqttnotificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|c:\\users\\paulo\\desktop\\is\\webapi\\webapi\\models\\dtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|solutionrelative:webapi\\models\\dtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\webapi\\models\\subscription.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|solutionrelative:webapi\\models\\subscription.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|c:\\users\\paulo\\desktop\\is\\webapi\\webapi\\models\\contentinstance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|solutionrelative:webapi\\models\\contentinstance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 201,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -51,14 +51,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MqttNotificationService.cs",
-              "DocumentMoniker": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Services\\MqttNotificationService.cs",
-              "RelativeDocumentMoniker": "WebAPI\\Services\\MqttNotificationService.cs",
-              "ToolTip": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Services\\MqttNotificationService.cs",
-              "RelativeToolTip": "WebAPI\\Services\\MqttNotificationService.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAYwDQAAAAJAAAAAAAAAA==",
+              "Title": "DTOS.cs",
+              "DocumentMoniker": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Models\\DTOS.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Models\\DTOS.cs",
+              "ToolTip": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Models\\DTOS.cs",
+              "RelativeToolTip": "WebAPI\\Models\\DTOS.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAUwDAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T23:36:35.857Z",
+              "WhenOpened": "2025-12-19T20:37:25.685Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ContentInstance.cs",
+              "DocumentMoniker": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Models\\ContentInstance.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Models\\ContentInstance.cs",
+              "ToolTip": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Models\\ContentInstance.cs",
+              "RelativeToolTip": "WebAPI\\Models\\ContentInstance.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-19T20:37:24.527Z",
               "EditorCaption": ""
             },
             {
@@ -69,22 +82,9 @@
               "RelativeDocumentMoniker": "WebAPI\\Controllers\\SomiodController.cs",
               "ToolTip": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Controllers\\SomiodController.cs",
               "RelativeToolTip": "WebAPI\\Controllers\\SomiodController.cs",
-              "ViewState": "AgIAAIkBAAAAAAAAAAAAwJwBAABkAAAAAAAAAA==",
+              "ViewState": "AgIAAJgBAAAAAAAAAAAqwLgBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T22:47:58.93Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Subscription.cs",
-              "DocumentMoniker": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Models\\Subscription.cs",
-              "RelativeDocumentMoniker": "WebAPI\\Models\\Subscription.cs",
-              "ToolTip": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Models\\Subscription.cs",
-              "RelativeToolTip": "WebAPI\\Models\\Subscription.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAgwCYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T22:54:26.702Z",
+              "WhenOpened": "2025-12-19T16:47:20.695Z",
               "EditorCaption": ""
             }
           ]

@@ -6,7 +6,7 @@ namespace WebAPI
     {
         public static void Register(HttpConfiguration config)
         {
-            // ATTRIBUTE ROUTING (OBRIGATÓRIO)
+            // Habilita Attribute Routing
             config.MapHttpAttributeRoutes();
 
             // Fallback (opcional)
@@ -16,8 +16,11 @@ namespace WebAPI
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            // JSON only (opcional mas recomendado)
-            config.Formatters.Remove(config.Formatters.XmlFormatter);
+            // Mantém JSON e XML
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(
+                new System.Net.Http.Headers.MediaTypeHeaderValue("text/plain")); // opcional: trata texto simples como JSON para leitura
+
+            config.Formatters.XmlFormatter.UseXmlSerializer = true;
         }
     }
 }

@@ -47,6 +47,7 @@ namespace WebAPI.Models
         [JsonProperty("resource-name")]
         public string ResourceName { get; set; } // optional
 
+
         [Required]
         [JsonProperty("content-type")]
         public string ContentType { get; set; }

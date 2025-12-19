@@ -1,80 +1,71 @@
 ﻿using System;
+using System.Linq;
+using System.Net;
 using System.Text;
-using MQTTnet;
-using MQTTnet.Client;
-using MQTTnet.Client.Options;
-using Newtonsoft.Json;
+using uPLibrary.Networking.M2Mqtt;
+using uPLibrary.Networking.M2Mqtt.Messages;
+using WebAPI.Data;
+using WebAPI.Models;
 
 namespace WebAPI.Services
 {
     public class MqttNotificationService
     {
-        private static IMqttClient _client;
-        private static readonly object _lock = new object();
+        private readonly SomiodDbContext db = new SomiodDbContext();
 
-        private const string Broker = "127.0.0.1";
-        private const int Port = 1883;
+        private MqttClient client;
 
-        private IMqttClient GetClient()
+        public MqttNotificationService()
         {
-            if (_client?.IsConnected == true)
-                return _client;
-
-            lock (_lock)
-            {
-                if (_client?.IsConnected == true)
-                    return _client;
-
-                var factory = new MqttFactory();
-                _client = factory.CreateMqttClient();
-
-                var options = new MqttClientOptionsBuilder()
-                    .WithTcpServer(Broker, Port)
-                    .WithClientId(Guid.NewGuid().ToString())
-                    .WithCleanSession()
-                    .Build();
-
-                _client.ConnectAsync(options).Wait();
-                return _client;
-            }
+            // Inicializa o cliente MQTT
+            client = new MqttClient("127.0.0.1"); // IP do broker
+            client.Connect(Guid.NewGuid().ToString());
         }
 
-        /// <summary>
-        /// Sends a SOMIOD-compliant MQTT notification
-        /// evt: 1 = creation, 2 = deletion
-        /// </summary>
-        public void NotifyContentInstanceEvent(
-            string appRn,
-            string containerRn,
-            string ciRn,
-            string contentType,
-            string content,
-            int evt)
+        public void NotifyContentInstanceEvent(string appRn, string contRn, string ciRn, string contentType, string content, int evt)
         {
-            var topic = $"api/somiod/{appRn}/{containerRn}";
+            var subscriptions = db.Subscriptions
+                .Where(s => s.Container.ResourceName == contRn &&
+                            s.Container.Application.ResourceName == appRn &&
+                            (s.Evt == evt || s.Evt == 3)) // evt 3 = both
+                .ToList();
 
-            var payload = new
+            foreach (var sub in subscriptions)
             {
-                evt = evt,
-                resource = new
+                if (sub.Endpoint.StartsWith("mqtt://"))
                 {
-                    res_type = "content-instance",
-                    resource_name = ciRn,
-                    content_type = contentType,
-                    content = content,
-                    path = $"/api/somiod/{appRn}/{containerRn}/{ciRn}",
-                    creation_datetime = DateTime.UtcNow
-                        .ToString("yyyy-MM-ddTHH:mm:ss")
+                    var topic = $"api/somiod/{appRn}/{contRn}";
+                    var payload = new
+                    {
+                        AppRn = appRn,
+                        ContRn = contRn,
+                        CiRn = ciRn,
+                        ContentType = contentType,
+                        Content = content,
+                        Event = evt == 1 ? "creation" : "deletion"
+                    };
+                    var msg = Encoding.UTF8.GetBytes(System.Text.Json.JsonSerializer.Serialize(payload));
+                    client.Publish(topic, msg, MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
                 }
-            };
-
-            var message = new MqttApplicationMessageBuilder()
-                .WithTopic(topic)
-                .WithPayload(JsonConvert.SerializeObject(payload))
-                .WithAtMostOnceQoS()
-                .Build();
-
-            GetClient().PublishAsync(message).Wait();
+                else if (sub.Endpoint.StartsWith("http://") || sub.Endpoint.StartsWith("https://"))
+                {
+                    using (var wc = new WebClient())
+                    {
+                        wc.Headers[HttpRequestHeader.ContentType] = "application/json";
+                        var payload = new
+                        {
+                            AppRn = appRn,
+                            ContRn = contRn,
+                            CiRn = ciRn,
+                            ContentType = contentType,
+                            Content = content,
+                            Event = evt == 1 ? "creation" : "deletion"
+                        };
+                        wc.UploadString(sub.Endpoint, System.Text.Json.JsonSerializer.Serialize(payload));
+                    }
+                }
+            }
         }
     }
 }
+
