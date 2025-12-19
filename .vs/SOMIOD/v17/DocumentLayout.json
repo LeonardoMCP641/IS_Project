@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|solutionrelative:webapi\\controllers\\somiodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|c:\\users\\paulo\\desktop\\is\\webapi\\webapi\\models\\dtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\webapi\\models\\dtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|solutionrelative:webapi\\models\\dtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -18,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 201,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,6 +46,19 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SomiodController.cs",
+              "DocumentMoniker": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Controllers\\SomiodController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\SomiodController.cs",
+              "ToolTip": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Controllers\\SomiodController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\SomiodController.cs",
+              "ViewState": "AgIAAHwAAAAAAAAAAAAIwGEBAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-19T16:47:20.695Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "DTOS.cs",
               "DocumentMoniker": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Models\\DTOS.cs",
@@ -54,21 +67,7 @@
               "RelativeToolTip": "WebAPI\\Models\\DTOS.cs",
               "ViewState": "AgIAACYAAAAAAAAAAAAUwDQAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-19T20:37:25.685Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SomiodController.cs",
-              "DocumentMoniker": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Controllers\\SomiodController.cs",
-              "RelativeDocumentMoniker": "WebAPI\\Controllers\\SomiodController.cs",
-              "ToolTip": "C:\\Users\\paulo\\Desktop\\IS\\WebAPI\\WebAPI\\Controllers\\SomiodController.cs",
-              "RelativeToolTip": "WebAPI\\Controllers\\SomiodController.cs",
-              "ViewState": "AgIAAHcBAAAAAAAAAAAAwGEBAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-19T16:47:20.695Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-19T20:37:25.685Z"
             }
           ]
         },
