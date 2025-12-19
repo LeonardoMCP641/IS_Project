@@ -3,11 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|c:\\users\\matilde\\desktop\\uni\\is\\is_project\\aplicationa\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|solutionrelative:aplicationa\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E9AA2C07-DAFF-41B0-8AFC-5E60687CC790}|ApplicationB\\ApplicationB.csproj|c:\\users\\matilde\\desktop\\uni\\is\\is_project\\applicationb\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E9AA2C07-DAFF-41B0-8AFC-5E60687CC790}|ApplicationB\\ApplicationB.csproj|C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\applicationb\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E9AA2C07-DAFF-41B0-8AFC-5E60687CC790}|ApplicationB\\ApplicationB.csproj|solutionrelative:applicationb\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -15,8 +11,20 @@
       "RelativeMoniker": "D:0:0:{E9AA2C07-DAFF-41B0-8AFC-5E60687CC790}|ApplicationB\\ApplicationB.csproj|solutionrelative:applicationb\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E9AA2C07-DAFF-41B0-8AFC-5E60687CC790}|ApplicationB\\ApplicationB.csproj|C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\applicationb\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E9AA2C07-DAFF-41B0-8AFC-5E60687CC790}|ApplicationB\\ApplicationB.csproj|solutionrelative:applicationb\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|c:\\users\\matilde\\desktop\\uni\\is\\is_project\\aplicationa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|solutionrelative:aplicationa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|c:\\users\\matilde\\desktop\\uni\\is\\is_project\\aplicationa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|solutionrelative:aplicationa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|c:\\users\\matilde\\desktop\\uni\\is\\is_project\\aplicationa\\models\\applicationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|solutionrelative:aplicationa\\models\\applicationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|c:\\users\\matilde\\desktop\\uni\\is\\is_project\\aplicationa\\models\\containerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|solutionrelative:aplicationa\\models\\containerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 201,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,33 +58,58 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\AplicationA\\Form1.Designer.cs",
-              "RelativeDocumentMoniker": "AplicationA\\Form1.Designer.cs",
-              "ToolTip": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\AplicationA\\Form1.Designer.cs",
-              "RelativeToolTip": "AplicationA\\Form1.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-19T22:11:42.085Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Form1.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\ApplicationB\\Form1.Designer.cs",
-              "RelativeDocumentMoniker": "ApplicationB\\Form1.Designer.cs",
-              "ToolTip": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\ApplicationB\\Form1.Designer.cs",
-              "RelativeToolTip": "ApplicationB\\Form1.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAWAAAAAAAAAA==",
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\AplicationA\\Form1.cs",
+              "RelativeDocumentMoniker": "AplicationA\\Form1.cs",
+              "ToolTip": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\AplicationA\\Form1.cs",
+              "RelativeToolTip": "AplicationA\\Form1.cs",
+              "ViewState": "AgIAAN4AAAAAAAAAAAAowOkAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-19T21:56:35.805Z",
+              "WhenOpened": "2025-12-19T22:18:19.605Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\AplicationA\\Form1.cs",
+              "RelativeDocumentMoniker": "AplicationA\\Form1.cs",
+              "ToolTip": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\AplicationA\\Form1.cs [Design]",
+              "RelativeToolTip": "AplicationA\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-19T22:15:43.437Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ContainerDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\AplicationA\\Models\\ContainerDTO.cs",
+              "RelativeDocumentMoniker": "AplicationA\\Models\\ContainerDTO.cs",
+              "ToolTip": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\AplicationA\\Models\\ContainerDTO.cs",
+              "RelativeToolTip": "AplicationA\\Models\\ContainerDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-19T22:14:08.192Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ApplicationDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\AplicationA\\Models\\ApplicationDTO.cs",
+              "RelativeDocumentMoniker": "AplicationA\\Models\\ApplicationDTO.cs",
+              "ToolTip": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\AplicationA\\Models\\ApplicationDTO.cs",
+              "RelativeToolTip": "AplicationA\\Models\\ApplicationDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-19T22:14:03.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\ApplicationB\\Form1.cs",
               "RelativeDocumentMoniker": "ApplicationB\\Form1.cs",
@@ -88,13 +121,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\ApplicationB\\Form1.cs",
               "RelativeDocumentMoniker": "ApplicationB\\Form1.cs",
               "ToolTip": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\ApplicationB\\Form1.cs",
               "RelativeToolTip": "ApplicationB\\Form1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAgwIAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-19T20:31:51.398Z",
               "EditorCaption": ""

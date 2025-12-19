@@ -1,64 +1,129 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
+using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Schema;
+using Newtonsoft.Json; // Resolve erro image_9c2570.png
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
-using System.Xml.Schema;  
-using Newtonsoft.Json; 
-using System.Net.Http;
 
 namespace ApplicationB
 {
     public partial class Form1 : Form
     {
+        MqttClient client;
+        private const string BaseUrl = "http://localhost:54249/api/somiod";
+
         public Form1()
         {
             InitializeComponent();
-            ConfigurarCliente();
+            ConfigurarMqtt();
+            PreencherListaProdutos();
         }
 
-        MqttClient client;
-        void ConfigurarCliente()
+        private void ConfigurarMqtt()
         {
             client = new MqttClient("127.0.0.1");
-
             client.MqttMsgPublishReceived += Evento_MensagemRecebida;
-
             client.Connect(Guid.NewGuid().ToString());
+        }
 
-            client.Subscribe(new string[] { "LojaModa/Sapatos" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE });
+        private async void btnSubscrever_Click(object sender, EventArgs e)
+        {
+            if (cbProdutos.SelectedItem == null)
+            {
+                MessageBox.Show("Matilde, escolhe um produto da lista primeiro!");
+                return;
+            }
+
+            string produto = cbProdutos.SelectedItem.ToString();
+
+            using (var httpClient = new HttpClient())
+            {
+                var subData = new
+                {
+                    res_type = "subscription",
+                    resource_name = "Sub_Cliente_" + Guid.NewGuid().ToString().Substring(0, 5),
+                    event_type = 1, // Creation
+                    endpoint = "mqtt://127.0.0.1"
+                };
+
+                string json = JsonConvert.SerializeObject(subData)
+                    .Replace("res_type", "res-type")
+                    .Replace("resource_name", "resource-name")
+                    .Replace("event_type", "event");
+
+                var content = new StringContent(json, Encoding.UTF8, "application/json"); // Resolve erro image_9c996f.png
+
+                // Fazemos o POST para o Middleware para criar a subscrição
+                var response = await httpClient.PostAsync($"{BaseUrl}/LojaPromocoes/{produto}/subs", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Subscrevemos também no Broker MQTT para este tópico específico
+                    client.Subscribe(new string[] { "LojaPromocoes/" + produto }, new byte[] { 0 });
+                    lblStatus.Text = "Status: Subscrito em " + produto;
+                    lblStatus.ForeColor = Color.Green;
+                }
+            }
         }
 
         void Evento_MensagemRecebida(object sender, MqttMsgPublishEventArgs e)
         {
             string xmlRecebido = Encoding.UTF8.GetString(e.Message);
-            string nomeFicheiro = "promocao_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xml";
+            string nomeFicheiro = "promo_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xml";
 
             if (ValidarXML(xmlRecebido, "Promocao.xsd"))
             {
-                File.WriteAllText(nomeFicheiro, xmlRecebido);
+                File.WriteAllText(nomeFicheiro, xmlRecebido); // Guarda no disco
 
                 this.Invoke((MethodInvoker)delegate {
-                    // Agora mostramos na caixa de texto que criaste!
-                    rtbNotificacoes.SelectionColor = Color.Green;
-                    rtbNotificacoes.AppendText($"[{DateTime.Now:HH:mm:ss}] VÁLIDA: {nomeFicheiro} guardada! " + Environment.NewLine);
-                    MessageBox.Show("Oba! Chegou uma promoção válida!");
+                    rtbPromocoes.SelectionColor = Color.Blue;
+                    rtbPromocoes.AppendText($"[{DateTime.Now:HH:mm}] NOVA PROMOÇÃO: " + Environment.NewLine);
+                    rtbPromocoes.SelectionColor = Color.Black;
+                    rtbPromocoes.AppendText(xmlRecebido + Environment.NewLine + "----------------" + Environment.NewLine);
                 });
             }
-            else
+        }
+
+        private async void PreencherListaProdutos()
+        {
+            try
             {
-                this.Invoke((MethodInvoker)delegate {
-                    rtbNotificacoes.SelectionColor = Color.Red;
-                    rtbNotificacoes.AppendText($"[{DateTime.Now:HH:mm:ss}] INVÁLIDA: Tentativa de fraude detetada! " + Environment.NewLine);
-                });
+                using (HttpClient httpClient = new HttpClient())
+                {
+                    // 1. Criar o pedido de descoberta (Discovery)
+                    var request = new HttpRequestMessage(HttpMethod.Get, $"{BaseUrl}/LojaPromocoes");
+                    request.Headers.Add("somiod-discovery", "container");
+
+                    var response = await httpClient.SendAsync(request);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string json = await response.Content.ReadAsStringAsync();
+                        var paths = JsonConvert.DeserializeObject<List<string>>(json);
+
+                        cbProdutos.Items.Clear(); // Limpa a lista antes de preencher
+
+                        if (paths != null)
+                        {
+                            foreach (var path in paths)
+                            {
+                                // Extrai apenas o nome do produto do caminho
+                                string[] partes = path.Split('/');
+                                cbProdutos.Items.Add(partes[partes.Length - 1]);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro ao carregar lista: " + ex.Message);
             }
         }
 
@@ -95,40 +160,15 @@ namespace ApplicationB
             }
         }
 
-        private async void btnSubscrever_Click(object sender, EventArgs e)
+
+        private void lblStatus_Click(object sender, EventArgs e)
         {
-            using (var clientHttp = new System.Net.Http.HttpClient())
-            {
-                var sub = new
-                {
-                    res_type = "subscription",
-                    resource_name = "Sub_Matilde_Cliente",
-                    event_type = 1, 
-                    endpoint = "mqtt://127.0.0.1"
-                };
 
-                string json = Newtonsoft.Json.JsonConvert.SerializeObject(sub)
-                    .Replace("res_type", "res-type")
-                    .Replace("resource_name", "resource-name")
-                    .Replace("event_type", "event");
+        }
 
-                var content = new System.Net.Http.StringContent(json, Encoding.UTF8, "application/json");
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
-                try
-                {
-                    var response = await clientHttp.PostAsync("http://localhost:54249/api/somiod/LojaModa/Sapatos/subs", content);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        lblStatus.Text = "Status: Subscrito com Sucesso! ";
-                        lblStatus.ForeColor = Color.Green;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao ligar ao Middleware: " + ex.Message);
-                }
-            }
         }
     }
 }
