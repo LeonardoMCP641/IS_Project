@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "WebAPI\\SomiodAPI.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "AplicationA\\AplicationA.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
