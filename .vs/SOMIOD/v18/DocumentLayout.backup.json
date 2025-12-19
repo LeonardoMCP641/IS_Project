@@ -3,45 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\",
   "Documents": [
     {
-<<<<<<< HEAD
-      "AbsoluteMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|c:\\users\\matilde\\desktop\\uni\\is\\is_project\\aplicationa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|solutionrelative:aplicationa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\aplicationa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|solutionrelative:aplicationa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\aplicationa\\models\\applicationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|solutionrelative:aplicationa\\models\\applicationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-=======
-      "AbsoluteMoniker": "D:0:0:{E9AA2C07-DAFF-41B0-8AFC-5E60687CC790}|ApplicationB\\ApplicationB.csproj|c:\\users\\matilde\\desktop\\uni\\is\\is_project\\applicationb\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E9AA2C07-DAFF-41B0-8AFC-5E60687CC790}|ApplicationB\\ApplicationB.csproj|solutionrelative:applicationb\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E9AA2C07-DAFF-41B0-8AFC-5E60687CC790}|ApplicationB\\ApplicationB.csproj|c:\\users\\matilde\\desktop\\uni\\is\\is_project\\applicationb\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9AA2C07-DAFF-41B0-8AFC-5E60687CC790}|ApplicationB\\ApplicationB.csproj|solutionrelative:applicationb\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E9AA2C07-DAFF-41B0-8AFC-5E60687CC790}|ApplicationB\\ApplicationB.csproj|c:\\users\\matilde\\desktop\\uni\\is\\is_project\\applicationb\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{E9AA2C07-DAFF-41B0-8AFC-5E60687CC790}|ApplicationB\\ApplicationB.csproj|solutionrelative:applicationb\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E9AA2C07-DAFF-41B0-8AFC-5E60687CC790}|ApplicationB\\ApplicationB.csproj|c:\\users\\matilde\\desktop\\uni\\is\\is_project\\applicationb\\promocao.xsd||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{E9AA2C07-DAFF-41B0-8AFC-5E60687CC790}|ApplicationB\\ApplicationB.csproj|solutionrelative:applicationb\\promocao.xsd||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|c:\\users\\matilde\\desktop\\uni\\is\\is_project\\webapi\\controllers\\somiodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|solutionrelative:webapi\\controllers\\somiodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\webapi\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|solutionrelative:webapi\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\webapi\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|solutionrelative:webapi\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\webapi\\app_start\\swaggerconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|solutionrelative:webapi\\app_start\\swaggerconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
->>>>>>> e94bd00 (Inicio do swagger e Aplicacao B)
+      "AbsoluteMoniker": "D:0:0:{E9AA2C07-DAFF-41B0-8AFC-5E60687CC790}|ApplicationB\\ApplicationB.csproj|c:\\users\\matilde\\desktop\\uni\\is\\is_project\\applicationb\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9AA2C07-DAFF-41B0-8AFC-5E60687CC790}|ApplicationB\\ApplicationB.csproj|solutionrelative:applicationb\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -51,11 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 201,
-<<<<<<< HEAD
           "SelectedChildIndex": 7,
-=======
-          "SelectedChildIndex": 5,
->>>>>>> e94bd00 (Inicio do swagger e Aplicacao B)
           "Children": [
             {
               "$type": "Bookmark",
@@ -79,128 +46,41 @@
             },
             {
               "$type": "Document",
-<<<<<<< HEAD
               "DocumentIndex": 2,
-              "Title": "ApplicationDTO.cs",
-              "DocumentMoniker": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\AplicationA\\Models\\ApplicationDTO.cs",
-              "RelativeDocumentMoniker": "AplicationA\\Models\\ApplicationDTO.cs",
-              "ToolTip": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\AplicationA\\Models\\ApplicationDTO.cs",
-              "RelativeToolTip": "AplicationA\\Models\\ApplicationDTO.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-19T20:16:07.075Z",
-=======
-              "DocumentIndex": 0,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\ApplicationB\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "ApplicationB\\Form1.Designer.cs",
               "ToolTip": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\ApplicationB\\Form1.Designer.cs",
               "RelativeToolTip": "ApplicationB\\Form1.Designer.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAAawFMAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-19T19:26:58.704Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Promocao.xsd",
-              "DocumentMoniker": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\ApplicationB\\Promocao.xsd",
-              "RelativeDocumentMoniker": "ApplicationB\\Promocao.xsd",
-              "ToolTip": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\ApplicationB\\Promocao.xsd",
-              "RelativeToolTip": "ApplicationB\\Promocao.xsd",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003579|",
-              "WhenOpened": "2025-12-19T19:23:42.96Z",
->>>>>>> e94bd00 (Inicio do swagger e Aplicacao B)
+              "WhenOpened": "2025-12-19T21:56:35.805Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-<<<<<<< HEAD
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\AplicationA\\Form1.cs",
-              "RelativeDocumentMoniker": "AplicationA\\Form1.cs",
-              "ToolTip": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\AplicationA\\Form1.cs",
-              "RelativeToolTip": "AplicationA\\Form1.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAiwB0AAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-19T20:16:07.221Z",
-=======
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\ApplicationB\\Form1.cs",
               "RelativeDocumentMoniker": "ApplicationB\\Form1.cs",
               "ToolTip": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\ApplicationB\\Form1.cs [Design]",
               "RelativeToolTip": "ApplicationB\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-19T19:17:43.034Z",
+              "WhenOpened": "2025-12-19T21:56:29.358Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Web.config",
-              "DocumentMoniker": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\WebAPI\\Web.config",
-              "RelativeDocumentMoniker": "WebAPI\\Web.config",
-              "ToolTip": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\WebAPI\\Web.config",
-              "RelativeToolTip": "WebAPI\\Web.config",
-              "ViewState": "AgIAABYAAAAAAAAAAAAUwEAAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-12-19T16:48:14.173Z",
->>>>>>> e94bd00 (Inicio do swagger e Aplicacao B)
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-<<<<<<< HEAD
               "DocumentIndex": 0,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\AplicationA\\Form1.cs",
-              "RelativeDocumentMoniker": "AplicationA\\Form1.cs",
-              "ToolTip": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\AplicationA\\Form1.cs [Design]",
-              "RelativeToolTip": "AplicationA\\Form1.cs [Design]",
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\ApplicationB\\Form1.cs",
+              "RelativeDocumentMoniker": "ApplicationB\\Form1.cs",
+              "ToolTip": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\ApplicationB\\Form1.cs",
+              "RelativeToolTip": "ApplicationB\\Form1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-19T20:16:07.484Z",
-              "EditorCaption": " [Design]"
-=======
-              "DocumentIndex": 5,
-              "Title": "web.config",
-              "DocumentMoniker": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\WebAPI\\Views\\web.config",
-              "RelativeDocumentMoniker": "WebAPI\\Views\\web.config",
-              "ToolTip": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\WebAPI\\Views\\web.config",
-              "RelativeToolTip": "WebAPI\\Views\\web.config",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAkwCMAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-12-19T16:47:23.718Z",
+              "WhenOpened": "2025-12-19T20:31:51.398Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SomiodController.cs",
-              "DocumentMoniker": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\WebAPI\\Controllers\\SomiodController.cs",
-              "RelativeDocumentMoniker": "WebAPI\\Controllers\\SomiodController.cs",
-              "ToolTip": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\WebAPI\\Controllers\\SomiodController.cs",
-              "RelativeToolTip": "WebAPI\\Controllers\\SomiodController.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAuwD8AAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-19T16:26:37.164Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "SwaggerConfig.cs",
-              "DocumentMoniker": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\WebAPI\\App_Start\\SwaggerConfig.cs",
-              "RelativeDocumentMoniker": "WebAPI\\App_Start\\SwaggerConfig.cs",
-              "ToolTip": "C:\\Users\\Matilde\\Desktop\\Uni\\IS\\IS_Project\\WebAPI\\App_Start\\SwaggerConfig.cs",
-              "RelativeToolTip": "WebAPI\\App_Start\\SwaggerConfig.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-19T16:09:19.245Z",
-              "EditorCaption": ""
->>>>>>> e94bd00 (Inicio do swagger e Aplicacao B)
             }
           ]
         },
