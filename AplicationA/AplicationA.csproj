@@ -87,6 +87,7 @@
     </Compile>
     <Compile Include="Models\ApplicationDTO.cs" />
     <Compile Include="Models\ContainerDTO.cs" />
+    <Compile Include="Models\ContentInstanceDTO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

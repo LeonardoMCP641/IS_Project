@@ -33,12 +33,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnCreateContainer = new System.Windows.Forms.Button();
             this.BtnUpdateContainer = new System.Windows.Forms.Button();
-            this.btnUpdateContent = new System.Windows.Forms.Button();
             this.btnCreateContent = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtResnameContentInstance = new System.Windows.Forms.TextBox();
+            this.txtcontent = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.lbProdutos = new System.Windows.Forms.ListBox();
+            this.lbcontentInstance = new System.Windows.Forms.ListBox();
+            this.btndeleteContainer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -72,7 +73,7 @@
             // btnCreateContainer
             // 
             this.btnCreateContainer.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnCreateContainer.Location = new System.Drawing.Point(674, 83);
+            this.btnCreateContainer.Location = new System.Drawing.Point(674, 66);
             this.btnCreateContainer.Name = "btnCreateContainer";
             this.btnCreateContainer.Size = new System.Drawing.Size(75, 23);
             this.btnCreateContainer.TabIndex = 3;
@@ -83,7 +84,7 @@
             // BtnUpdateContainer
             // 
             this.BtnUpdateContainer.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.BtnUpdateContainer.Location = new System.Drawing.Point(674, 112);
+            this.BtnUpdateContainer.Location = new System.Drawing.Point(674, 95);
             this.BtnUpdateContainer.Name = "BtnUpdateContainer";
             this.BtnUpdateContainer.Size = new System.Drawing.Size(75, 23);
             this.BtnUpdateContainer.TabIndex = 4;
@@ -91,21 +92,10 @@
             this.BtnUpdateContainer.UseVisualStyleBackColor = false;
             this.BtnUpdateContainer.Click += new System.EventHandler(this.BtnUpdateContainer_Click);
             // 
-            // btnUpdateContent
-            // 
-            this.btnUpdateContent.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnUpdateContent.Location = new System.Drawing.Point(674, 227);
-            this.btnUpdateContent.Name = "btnUpdateContent";
-            this.btnUpdateContent.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdateContent.TabIndex = 8;
-            this.btnUpdateContent.Text = "Alterar";
-            this.btnUpdateContent.UseVisualStyleBackColor = false;
-            this.btnUpdateContent.Click += new System.EventHandler(this.btnUpdateContent_Click);
-            // 
             // btnCreateContent
             // 
             this.btnCreateContent.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnCreateContent.Location = new System.Drawing.Point(674, 198);
+            this.btnCreateContent.Location = new System.Drawing.Point(674, 215);
             this.btnCreateContent.Name = "btnCreateContent";
             this.btnCreateContent.Size = new System.Drawing.Size(75, 23);
             this.btnCreateContent.TabIndex = 7;
@@ -123,13 +113,13 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Nova Promoção";
             // 
-            // txtResnameContentInstance
+            // txtcontent
             // 
-            this.txtResnameContentInstance.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.txtResnameContentInstance.Location = new System.Drawing.Point(489, 216);
-            this.txtResnameContentInstance.Name = "txtResnameContentInstance";
-            this.txtResnameContentInstance.Size = new System.Drawing.Size(162, 22);
-            this.txtResnameContentInstance.TabIndex = 5;
+            this.txtcontent.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.txtcontent.Location = new System.Drawing.Point(489, 216);
+            this.txtcontent.Name = "txtcontent";
+            this.txtcontent.Size = new System.Drawing.Size(162, 22);
+            this.txtcontent.TabIndex = 5;
             // 
             // label4
             // 
@@ -152,17 +142,40 @@
             this.lbProdutos.TabIndex = 10;
             this.lbProdutos.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbProdutos_MouseDoubleClick);
             // 
+            // lbcontentInstance
+            // 
+            this.lbcontentInstance.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.lbcontentInstance.FormattingEnabled = true;
+            this.lbcontentInstance.ItemHeight = 16;
+            this.lbcontentInstance.Location = new System.Drawing.Point(371, 255);
+            this.lbcontentInstance.Name = "lbcontentInstance";
+            this.lbcontentInstance.Size = new System.Drawing.Size(378, 164);
+            this.lbcontentInstance.TabIndex = 11;
+            this.lbcontentInstance.SelectedIndexChanged += new System.EventHandler(this.lbContentInstances_SelectedIndexChanged);
+            // 
+            // btndeleteContainer
+            // 
+            this.btndeleteContainer.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btndeleteContainer.Location = new System.Drawing.Point(674, 124);
+            this.btndeleteContainer.Name = "btndeleteContainer";
+            this.btndeleteContainer.Size = new System.Drawing.Size(75, 23);
+            this.btndeleteContainer.TabIndex = 12;
+            this.btndeleteContainer.Text = "Apagar";
+            this.btndeleteContainer.UseVisualStyleBackColor = false;
+            this.btndeleteContainer.Click += new System.EventHandler(this.btndeleteContainer_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btndeleteContainer);
+            this.Controls.Add(this.lbcontentInstance);
             this.Controls.Add(this.lbProdutos);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.btnUpdateContent);
             this.Controls.Add(this.btnCreateContent);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtResnameContentInstance);
+            this.Controls.Add(this.txtcontent);
             this.Controls.Add(this.BtnUpdateContainer);
             this.Controls.Add(this.btnCreateContainer);
             this.Controls.Add(this.label2);
@@ -183,12 +196,13 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnCreateContainer;
         private System.Windows.Forms.Button BtnUpdateContainer;
-        private System.Windows.Forms.Button btnUpdateContent;
         private System.Windows.Forms.Button btnCreateContent;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtResnameContentInstance;
+        private System.Windows.Forms.TextBox txtcontent;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListBox lbProdutos;
+        private System.Windows.Forms.ListBox lbcontentInstance;
+        private System.Windows.Forms.Button btndeleteContainer;
     }
 }
 

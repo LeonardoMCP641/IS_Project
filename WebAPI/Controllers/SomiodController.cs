@@ -297,12 +297,33 @@ namespace WebAPI.Controllers
         [HttpGet, Route("{appRn}/{contRn}")]
         public IHttpActionResult GetContainer(string appRn, string contRn)
         {
-            var cont = db.Containers.FirstOrDefault(c =>
-                c.ResourceName == contRn &&
-                c.Application.ResourceName == appRn);
+            var cont =
+                (from c in db.Containers
+                 join a in db.Applications on c.ApplicationId equals a.Id
+                 where a.ResourceName == appRn && c.ResourceName == contRn
+                 select c).FirstOrDefault();
 
-            if (cont == null) return NotFound();
-            return Ok(cont);
+            if (cont == null)
+                return NotFound();
+
+            // Se não houver discovery → devolve o container normal
+            if (!Request.Headers.Contains("somiod-discovery"))
+                return Ok(cont);
+
+            var value = Request.Headers.GetValues("somiod-discovery").First();
+
+            if (value.Equals("content-instance", StringComparison.OrdinalIgnoreCase))
+            {
+                var paths =
+                    (from ci in db.ContentInstances
+                     where ci.ContainerId == cont.Id
+                     select "/api/somiod/" + appRn + "/" + contRn + "/" + ci.ResourceName
+                    ).ToList();
+
+                return Ok(paths);
+            }
+
+            return BadRequest("Invalid somiod-discovery value");
         }
 
         // UPDATE CONTAINER

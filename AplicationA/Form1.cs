@@ -218,17 +218,61 @@ namespace AplicationA
             }
         }
 
-        private void btnCreateContent_Click(object sender, EventArgs e)
+        private async void btnCreateContent_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // 1. Obter dados da UI
+                string appRn = "LojaPromocoes";
+                string contRn = lbProdutos.SelectedItem.ToString(); // O produto selecionado
 
+                if (string.IsNullOrEmpty(contRn))
+                {
+                    MessageBox.Show("Por favor, selecione um produto na lista primeiro!");
+                    return;
+                }
+
+                // Dados da nova instância (Promoção)
+                var dto = new ContentInstanceDTO
+                { 
+                    ContentType = "text/plain", // Podes obter de uma ComboBox
+                    Content = txtcontent.Text.Trim() // O valor da promoção/preço
+                };
+
+                // 2. Serializar para JSON
+                string json = JsonSerializer.Serialize(dto);
+                var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+
+                // 3. Montar o URL conforme o teu Route: {appRn}/{contRn}
+                // Exemplo: http://localhost:XXXX/api/somiod/LojaPromocoes/SapatoNike
+                string url = $"{BaseUrl}/{appRn}/{contRn}";
+
+                // 4. Enviar o POST
+                var response = await _httpClient.PostAsync(url, httpContent);
+
+                if (response.StatusCode == HttpStatusCode.Created)
+                {
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    MessageBox.Show($"Promoção criado com sucesso!\n{responseBody}");
+
+                    // Limpar campo de valor após sucesso
+                    txtcontent.Clear();
+                }
+                else
+                {
+                    string error = await response.Content.ReadAsStringAsync();
+                    MessageBox.Show($"Erro ({response.StatusCode}): {error}");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro de ligação: " + ex.Message);
+            }
         }
 
-        private void btnUpdateContent_Click(object sender, EventArgs e)
-        {
 
-        }
 
-        private void lbProdutos_MouseDoubleClick(object sender, MouseEventArgs e)
+        private async void  lbProdutos_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             // Verificar se existe algum item selecionado
             if (lbProdutos.SelectedItem != null)
@@ -239,7 +283,143 @@ namespace AplicationA
                 // 2. Passar para a TextBox
                 txtResnameContainer.Text = nomeSelecionado;
 
-          
+                await ListarContentInstances(nomeSelecionado);
+            }
+        }
+
+        private async Task ListarContentInstances(string nomeProduto)
+        {
+            string appName = "LojaPromocoes";
+            string urlDiscovery = $"{BaseUrl}/{appName}/{nomeProduto}";
+
+            try
+            {
+                // 1. Discovery para obter os caminhos (paths)
+                var request = new HttpRequestMessage(HttpMethod.Get, urlDiscovery);
+                request.Headers.Add("somiod-discovery", "content-instance");
+                var response = await _httpClient.SendAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string json = await response.Content.ReadAsStringAsync();
+                    var listaCaminhos = JsonSerializer.Deserialize<List<string>>(json);
+
+                    lbcontentInstance.Items.Clear();
+
+                    if (listaCaminhos != null)
+                    {
+                        foreach (var caminho in listaCaminhos)
+                        {
+                            // 2. Para cada caminho, vamos buscar o objeto real (GET)
+                            // Nota: O caminho já vem como "/api/somiod/..."
+                            // Precisamos de juntar ao domínio/porta (ex: http://localhost:1234)
+                            string urlBaseSomiod = BaseUrl.Replace("/api/somiod", "");
+                            string urlCompleta = urlBaseSomiod + caminho;
+
+                            var resItem = await _httpClient.GetAsync(urlCompleta);
+                            if (resItem.IsSuccessStatusCode)
+                            {
+                                var ci = JsonSerializer.Deserialize<ContentInstanceDTO>(await resItem.Content.ReadAsStringAsync());
+
+                                // 3. ADICIONAR OS DOIS À LISTA
+                                // Formato: "Nome [Valor]"
+                                lbcontentInstance.Items.Add($"{ci.ResourceName} | {ci.Content}");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar lista detalhada: " + ex.Message);
+            }
+        }
+
+
+        private async void lbContentInstances_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lbcontentInstance.SelectedItem == null) return;
+
+            string instanciaSelecionada = lbcontentInstance.SelectedItem.ToString();
+            string produtoSelecionado = txtResnameContainer.Text;
+            string appName = "LojaPromocoes";
+
+            // URL Direto: api/somiod/Loja/Produto/Instancia
+            string url = $"{BaseUrl}/{appName}/{produtoSelecionado}/{instanciaSelecionada}";
+
+            try
+            {
+                // GET sem headers de discovery (devolve o objeto completo)
+                var response = await _httpClient.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string json = await response.Content.ReadAsStringAsync();
+                    // Deserializa para o teu DTO que tem o campo "content"
+                    var ci = JsonSerializer.Deserialize<ContentInstanceDTO>(json);
+
+                    // Mostra o valor (ex: "19.99€") numa Label ou TextBox
+                    txtcontent.Text = ci.Content.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao obter detalhes: " + ex.Message);
+            }
+        }
+
+        private async void btndeleteContainer_Click(object sender, EventArgs e)
+        {
+            // 1. Obter o nome do produto que está na TextBox
+            string containerName = txtResnameContainer.Text.Trim();
+            string appName = "LojaPromocoes";
+
+            // Validação básica
+            if (string.IsNullOrEmpty(containerName))
+            {
+                MessageBox.Show("Por favor, selecione ou escreva o nome do produto que deseja apagar.");
+                return;
+            }
+
+            // 2. Pedir confirmação ao utilizador (boa prática para DELETE)
+            var confirmResult = MessageBox.Show(
+                $"Tem a certeza que deseja apagar o produto '{containerName}' e todas as suas promoções?",
+                "Confirmar Eliminação",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (confirmResult != DialogResult.Yes) return;
+
+            try
+            {
+                // 3. Montar o URL: http://localhost:XXXX/api/somiod/LojaPromocoes/NomeDoProduto
+                string url = $"{BaseUrl}/{appName}/{containerName}";
+
+                // 4. Enviar o pedido DELETE
+                var response = await _httpClient.DeleteAsync(url);
+
+                // O teu Middleware devolve HttpStatusCode.NoContent (204) em caso de sucesso
+                if (response.StatusCode == HttpStatusCode.NoContent || response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show($"Produto '{containerName}' apagado com sucesso.");
+
+                    // 5. LIMPEZA E ATUALIZAÇÃO DA UI
+                    txtResnameContainer.Clear();
+                    txtcontent.Clear();
+                    lbcontentInstance.Items.Clear();
+
+                    // Atualiza a lista principal de produtos para refletir a remoção
+                    await PreencherListaProdutos();
+                }
+                else
+                {
+                    string error = await response.Content.ReadAsStringAsync();
+                    MessageBox.Show($"Erro ao apagar ({response.StatusCode}): {error}");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro de ligação ao Middleware: " + ex.Message);
             }
         }
     }

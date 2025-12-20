@@ -3,19 +3,15 @@
   "WorkspaceRootPath": "C:\\Uni\\is\\Projeto\\IS_Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|c:\\uni\\is\\projeto\\is_project\\aplicationa\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|solutionrelative:aplicationa\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E9AA2C07-DAFF-41B0-8AFC-5E60687CC790}|ApplicationB\\ApplicationB.csproj|c:\\uni\\is\\projeto\\is_project\\applicationb\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9AA2C07-DAFF-41B0-8AFC-5E60687CC790}|ApplicationB\\ApplicationB.csproj|solutionrelative:applicationb\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|c:\\uni\\is\\projeto\\is_project\\aplicationa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|solutionrelative:aplicationa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{E9AA2C07-DAFF-41B0-8AFC-5E60687CC790}|ApplicationB\\ApplicationB.csproj|c:\\uni\\is\\projeto\\is_project\\applicationb\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{E9AA2C07-DAFF-41B0-8AFC-5E60687CC790}|ApplicationB\\ApplicationB.csproj|solutionrelative:applicationb\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|C:\\Uni\\is\\Projeto\\IS_Project\\aplicationa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0E5F1DE0-E8CB-4477-BD7E-28E0D12E02F0}|AplicationA\\AplicationA.csproj|solutionrelative:aplicationa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|c:\\uni\\is\\projeto\\is_project\\webapi\\controllers\\somiodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|C:\\Uni\\is\\Projeto\\IS_Project\\webapi\\controllers\\somiodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{85C97D81-9AE7-4818-A5DB-D80857860D11}|WebAPI\\SomiodAPI.csproj|solutionrelative:webapi\\controllers\\somiodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -31,53 +27,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Form1.Designer.cs",
-              "DocumentMoniker": "C:\\Uni\\is\\Projeto\\IS_Project\\AplicationA\\Form1.Designer.cs",
-              "RelativeDocumentMoniker": "AplicationA\\Form1.Designer.cs",
-              "ToolTip": "C:\\Uni\\is\\Projeto\\IS_Project\\AplicationA\\Form1.Designer.cs",
-              "RelativeToolTip": "AplicationA\\Form1.Designer.cs",
-              "ViewState": "AgIAAJcAAAAAAAAAAAAwwJ8AAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-19T21:28:37.015Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SomiodController.cs",
-              "DocumentMoniker": "C:\\Uni\\is\\Projeto\\IS_Project\\WebAPI\\Controllers\\SomiodController.cs",
-              "RelativeDocumentMoniker": "WebAPI\\Controllers\\SomiodController.cs",
-              "ToolTip": "C:\\Uni\\is\\Projeto\\IS_Project\\WebAPI\\Controllers\\SomiodController.cs",
-              "RelativeToolTip": "WebAPI\\Controllers\\SomiodController.cs",
-              "ViewState": "AgIAAC0BAAAAAAAAAAAAADYBAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-19T20:39:01.446Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Uni\\is\\Projeto\\IS_Project\\AplicationA\\Form1.cs",
-              "RelativeDocumentMoniker": "AplicationA\\Form1.cs",
-              "ToolTip": "C:\\Uni\\is\\Projeto\\IS_Project\\AplicationA\\Form1.cs",
-              "RelativeToolTip": "AplicationA\\Form1.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAqwB4AAAAIAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Uni\\is\\Projeto\\IS_Project\\ApplicationB\\Form1.cs",
+              "RelativeDocumentMoniker": "ApplicationB\\Form1.cs",
+              "ToolTip": "C:\\Uni\\is\\Projeto\\IS_Project\\ApplicationB\\Form1.cs*",
+              "RelativeToolTip": "ApplicationB\\Form1.cs*",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAAEwAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-19T18:38:52.244Z",
+              "WhenOpened": "2025-12-20T18:51:17.012Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Uni\\is\\Projeto\\IS_Project\\AplicationA\\Form1.cs",
-              "RelativeDocumentMoniker": "AplicationA\\Form1.cs",
-              "ToolTip": "C:\\Uni\\is\\Projeto\\IS_Project\\AplicationA\\Form1.cs [Design]",
-              "RelativeToolTip": "AplicationA\\Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Uni\\is\\Projeto\\IS_Project\\ApplicationB\\Form1.cs",
+              "RelativeDocumentMoniker": "ApplicationB\\Form1.cs",
+              "ToolTip": "C:\\Uni\\is\\Projeto\\IS_Project\\ApplicationB\\Form1.cs [Design]*",
+              "RelativeToolTip": "ApplicationB\\Form1.cs [Design]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-19T18:34:51.279Z",
+              "WhenOpened": "2025-12-20T18:51:14.387Z",
               "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SomiodController.cs",
+              "DocumentMoniker": "C:\\Uni\\is\\Projeto\\IS_Project\\WebAPI\\Controllers\\SomiodController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\SomiodController.cs",
+              "ToolTip": "C:\\Uni\\is\\Projeto\\IS_Project\\WebAPI\\Controllers\\SomiodController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\SomiodController.cs",
+              "ViewState": "AgIAAGIBAAAAAAAAAAAAAHEBAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-19T20:39:01.446Z",
+              "EditorCaption": ""
             }
           ]
         }

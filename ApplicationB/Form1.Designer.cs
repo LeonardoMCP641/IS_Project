@@ -42,6 +42,7 @@ namespace ApplicationB
             this.btnAtualizar = new System.Windows.Forms.Button();
             this.lstHistorico = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btndessubscrever = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstProdutos
@@ -59,7 +60,7 @@ namespace ApplicationB
             this.btnSubscrever.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnSubscrever.Location = new System.Drawing.Point(345, 50);
             this.btnSubscrever.Name = "btnSubscrever";
-            this.btnSubscrever.Size = new System.Drawing.Size(100, 33);
+            this.btnSubscrever.Size = new System.Drawing.Size(100, 48);
             this.btnSubscrever.TabIndex = 1;
             this.btnSubscrever.Text = "Subscrever";
             this.btnSubscrever.UseVisualStyleBackColor = false;
@@ -96,12 +97,24 @@ namespace ApplicationB
             this.label1.TabIndex = 4;
             this.label1.Text = "Promoções em Tempo Real";
             // 
+            // btndessubscrever
+            // 
+            this.btndessubscrever.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btndessubscrever.Location = new System.Drawing.Point(345, 104);
+            this.btndessubscrever.Name = "btndessubscrever";
+            this.btndessubscrever.Size = new System.Drawing.Size(100, 48);
+            this.btndessubscrever.TabIndex = 5;
+            this.btndessubscrever.Text = "Não Subscrever";
+            this.btndessubscrever.UseVisualStyleBackColor = false;
+            this.btndessubscrever.Click += new System.EventHandler(this.btndessubscrever_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btndessubscrever);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lstHistorico);
             this.Controls.Add(this.btnAtualizar);
@@ -122,6 +135,7 @@ namespace ApplicationB
         private Button btnAtualizar;
         private ListBox lstHistorico;
         private Label label1;
+        private Button btndessubscrever;
     }
 }
 
