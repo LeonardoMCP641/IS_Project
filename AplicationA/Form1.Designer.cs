@@ -44,6 +44,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.label1.Location = new System.Drawing.Point(514, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(137, 16);
@@ -52,7 +53,8 @@
             // 
             // txtResnameContainer
             // 
-            this.txtResnameContainer.Location = new System.Drawing.Point(473, 96);
+            this.txtResnameContainer.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.txtResnameContainer.Location = new System.Drawing.Point(475, 96);
             this.txtResnameContainer.Name = "txtResnameContainer";
             this.txtResnameContainer.Size = new System.Drawing.Size(176, 22);
             this.txtResnameContainer.TabIndex = 1;
@@ -60,6 +62,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.label2.Location = new System.Drawing.Point(368, 102);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 16);
@@ -68,48 +71,53 @@
             // 
             // btnCreateContainer
             // 
-            this.btnCreateContainer.Location = new System.Drawing.Point(674, 62);
+            this.btnCreateContainer.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnCreateContainer.Location = new System.Drawing.Point(674, 83);
             this.btnCreateContainer.Name = "btnCreateContainer";
             this.btnCreateContainer.Size = new System.Drawing.Size(75, 23);
             this.btnCreateContainer.TabIndex = 3;
             this.btnCreateContainer.Text = "Novo";
-            this.btnCreateContainer.UseVisualStyleBackColor = true;
+            this.btnCreateContainer.UseVisualStyleBackColor = false;
             this.btnCreateContainer.Click += new System.EventHandler(this.btnCreateContainer_Click);
             // 
             // BtnUpdateContainer
             // 
-            this.BtnUpdateContainer.Location = new System.Drawing.Point(674, 123);
+            this.BtnUpdateContainer.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BtnUpdateContainer.Location = new System.Drawing.Point(674, 112);
             this.BtnUpdateContainer.Name = "BtnUpdateContainer";
             this.BtnUpdateContainer.Size = new System.Drawing.Size(75, 23);
             this.BtnUpdateContainer.TabIndex = 4;
             this.BtnUpdateContainer.Text = "Alterar";
-            this.BtnUpdateContainer.UseVisualStyleBackColor = true;
+            this.BtnUpdateContainer.UseVisualStyleBackColor = false;
             this.BtnUpdateContainer.Click += new System.EventHandler(this.BtnUpdateContainer_Click);
             // 
             // btnUpdateContent
             // 
-            this.btnUpdateContent.Location = new System.Drawing.Point(674, 232);
+            this.btnUpdateContent.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnUpdateContent.Location = new System.Drawing.Point(674, 227);
             this.btnUpdateContent.Name = "btnUpdateContent";
             this.btnUpdateContent.Size = new System.Drawing.Size(75, 23);
             this.btnUpdateContent.TabIndex = 8;
             this.btnUpdateContent.Text = "Alterar";
-            this.btnUpdateContent.UseVisualStyleBackColor = true;
+            this.btnUpdateContent.UseVisualStyleBackColor = false;
             this.btnUpdateContent.Click += new System.EventHandler(this.btnUpdateContent_Click);
             // 
             // btnCreateContent
             // 
-            this.btnCreateContent.Location = new System.Drawing.Point(674, 180);
+            this.btnCreateContent.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnCreateContent.Location = new System.Drawing.Point(674, 198);
             this.btnCreateContent.Name = "btnCreateContent";
             this.btnCreateContent.Size = new System.Drawing.Size(75, 23);
             this.btnCreateContent.TabIndex = 7;
             this.btnCreateContent.Text = "Novo";
-            this.btnCreateContent.UseVisualStyleBackColor = true;
+            this.btnCreateContent.UseVisualStyleBackColor = false;
             this.btnCreateContent.Click += new System.EventHandler(this.btnCreateContent_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(368, 205);
+            this.label3.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.label3.Location = new System.Drawing.Point(368, 219);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(106, 16);
             this.label3.TabIndex = 6;
@@ -117,7 +125,8 @@
             // 
             // txtResnameContentInstance
             // 
-            this.txtResnameContentInstance.Location = new System.Drawing.Point(489, 202);
+            this.txtResnameContentInstance.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.txtResnameContentInstance.Location = new System.Drawing.Point(489, 216);
             this.txtResnameContentInstance.Name = "txtResnameContentInstance";
             this.txtResnameContentInstance.Size = new System.Drawing.Size(162, 22);
             this.txtResnameContentInstance.TabIndex = 5;
@@ -125,7 +134,8 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(81, 36);
+            this.label4.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.label4.Location = new System.Drawing.Point(106, 36);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 16);
             this.label4.TabIndex = 9;
@@ -133,11 +143,12 @@
             // 
             // lbProdutos
             // 
+            this.lbProdutos.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.lbProdutos.FormattingEnabled = true;
             this.lbProdutos.ItemHeight = 16;
             this.lbProdutos.Location = new System.Drawing.Point(12, 83);
             this.lbProdutos.Name = "lbProdutos";
-            this.lbProdutos.Size = new System.Drawing.Size(267, 180);
+            this.lbProdutos.Size = new System.Drawing.Size(267, 340);
             this.lbProdutos.TabIndex = 10;
             this.lbProdutos.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbProdutos_MouseDoubleClick);
             // 

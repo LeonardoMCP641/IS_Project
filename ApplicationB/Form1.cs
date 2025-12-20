@@ -1,174 +1,210 @@
-﻿using System;
+﻿using Newtonsoft.Json; // Se der erro, instala o NuGet Newtonsoft.Json
+using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml;
-using System.Xml.Schema;
-using Newtonsoft.Json; // Resolve erro image_9c2570.png
-using uPLibrary.Networking.M2Mqtt;
+using uPLibrary.Networking.M2Mqtt; // Se der erro, instala o NuGet M2Mqtt
 using uPLibrary.Networking.M2Mqtt.Messages;
 
 namespace ApplicationB
 {
     public partial class Form1 : Form
     {
-        MqttClient client;
-        private const string BaseUrl = "http://localhost:54249/api/somiod";
+        // 1. CONFIGURAÇÕES (Muda aqui a porta se a tua for diferente!)
+        private const string BaseApiUrl = "http://localhost:54249/api/somiod";
+        private const string AppName = "LojaPromocoes"; // Nome da tua Application na BD
+        private MqttClient mqttClient;
 
         public Form1()
         {
             InitializeComponent();
-            ConfigurarMqtt();
-            PreencherListaProdutos();
         }
 
-        private void ConfigurarMqtt()
+        // --- AÇÃO: BOTÃO "VER PRODUTOS" ---
+        private async void btnAtualizar_Click(object sender, EventArgs e)
         {
-            client = new MqttClient("127.0.0.1");
-            client.MqttMsgPublishReceived += Evento_MensagemRecebida;
-            client.Connect(Guid.NewGuid().ToString());
-        }
-
-        private async void btnSubscrever_Click(object sender, EventArgs e)
-        {
-            if (cbProdutos.SelectedItem == null)
+            try
             {
-                MessageBox.Show("Matilde, escolhe um produto da lista primeiro!");
-                return;
-            }
-
-            string produto = cbProdutos.SelectedItem.ToString();
-
-            using (var httpClient = new HttpClient())
-            {
-                var subData = new
+                using (HttpClient client = new HttpClient())
                 {
-                    res_type = "subscription",
-                    resource_name = "Sub_Cliente_" + Guid.NewGuid().ToString().Substring(0, 5),
-                    event_type = 1, // Creation
-                    endpoint = "mqtt://127.0.0.1"
-                };
+                    // Pedimos à API os containers (produtos) da nossa loja
+                    client.DefaultRequestHeaders.Add("somiod-discovery", "container");
 
-                string json = JsonConvert.SerializeObject(subData)
-                    .Replace("res_type", "res-type")
-                    .Replace("resource_name", "resource-name")
-                    .Replace("event_type", "event");
+                    var response = await client.GetAsync($"{BaseApiUrl}/{AppName}");
 
-                var content = new StringContent(json, Encoding.UTF8, "application/json"); // Resolve erro image_9c996f.png
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        var listaCaminhos = JsonConvert.DeserializeObject<List<string>>(json);
 
-                // Fazemos o POST para o Middleware para criar a subscrição
-                var response = await httpClient.PostAsync($"{BaseUrl}/LojaPromocoes/{produto}/subs", content);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    // Subscrevemos também no Broker MQTT para este tópico específico
-                    client.Subscribe(new string[] { "LojaPromocoes/" + produto }, new byte[] { 0 });
-                    lblStatus.Text = "Status: Subscrito em " + produto;
-                    lblStatus.ForeColor = Color.Green;
+                        lstProdutos.Items.Clear();
+                        foreach (var path in listaCaminhos)
+                        {
+                            // Extrai o nome do produto: /api/somiod/LojaMatilde/Produto -> Produto
+                            lstProdutos.Items.Add(path.Split('/').Last());
+                        }
+                        await CarregarSubscricoesExistentes();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao buscar produtos. Verifica se a API e a BD estão ligadas!");
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro: " + ex.Message);
+            }
         }
 
-        void Evento_MensagemRecebida(object sender, MqttMsgPublishEventArgs e)
+        // --- AÇÃO: BOTÃO "SUBSCREVER" ---
+        // --- AÇÃO: BOTÃO "SUBSCREVER" CORRIGIDO ---
+        private async void btnSubscrever_Click(object sender, EventArgs e)
         {
-            string xmlRecebido = Encoding.UTF8.GetString(e.Message);
-            string nomeFicheiro = "promo_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xml";
+            if (lstProdutos.SelectedItem == null) return;
+            string produto = lstProdutos.SelectedItem.ToString();
+            string urlFinal = $"{BaseApiUrl}/{AppName}/{produto}/subs";
 
-            if (ValidarXML(xmlRecebido, "Promocao.xsd"))
+            var subData = new Dictionary<string, object>
             {
-                File.WriteAllText(nomeFicheiro, xmlRecebido); // Guarda no disco
+                { "res-type", "subscription" },
+                { "resource-name", "Sub" + produto },
+                { "evt", 1 },
+                { "endpoint", $"{AppName}/{produto}" }
+            };
+
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    var content = new StringContent(JsonConvert.SerializeObject(subData), Encoding.UTF8, "application/json");
+                    var response = await client.PostAsync(urlFinal, content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        MessageBox.Show($"Sucesso! Agora está subscrito a: {produto} ");
+                        LigarAoMQTT($"{AppName}/{produto}");
+                    }
+                    else if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
+                    {
+                        MessageBox.Show($"Já está subscrito em {produto}!");
+                        LigarAoMQTT($"{AppName}/{produto}");
+                    }
+                    else
+                    {
+                        string erroDescricao = await response.Content.ReadAsStringAsync();
+                        MessageBox.Show($"Erro {response.StatusCode}: {erroDescricao}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro: " + ex.Message);
+            }
+        }
+        // --- LÓGICA DO MQTT ---
+        private void LigarAoMQTT(string topicoRelativo)
+        {
+            try
+            {
+                string topicoCompleto = $"api/somiod/{topicoRelativo}";
+
+                if (mqttClient == null)
+                {
+                    mqttClient = new MqttClient("127.0.0.1");
+                    mqttClient.MqttMsgPublishReceived += AoReceberMensagem;
+                }
+
+                if (!mqttClient.IsConnected)
+                {
+                    mqttClient.Connect(Guid.NewGuid().ToString());
+                }
+
+                
+                mqttClient.Subscribe(new string[] { topicoCompleto }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro no MQTT: " + ex.Message);
+            }
+        }
+
+        private void AoReceberMensagem(object sender, MqttMsgPublishEventArgs e)
+        {
+            try
+            {
+                string rawPayload = Encoding.UTF8.GetString(e.Message);
+                string hora = DateTime.Now.ToString("HH:mm");
+                string produto = e.Topic.Split('/').Last();
+
+                var dados = JsonConvert.DeserializeObject<dynamic>(rawPayload);
+
+                string mensagemLimpa = dados.resource.content;
 
                 this.Invoke((MethodInvoker)delegate {
-                    rtbPromocoes.SelectionColor = Color.Blue;
-                    rtbPromocoes.AppendText($"[{DateTime.Now:HH:mm}] NOVA PROMOÇÃO: " + Environment.NewLine);
-                    rtbPromocoes.SelectionColor = Color.Black;
-                    rtbPromocoes.AppendText(xmlRecebido + Environment.NewLine + "----------------" + Environment.NewLine);
+                    string novaLinha = $"[{hora}] {produto.ToUpper()} ➔ {mensagemLimpa}";
+                    lstHistorico.Items.Insert(0, novaLinha);
+
+                    if (mensagemLimpa.ToLower().Contains("desconto") || mensagemLimpa.Contains("%"))
+                    {
+                        Console.Beep();
+                    }
+                });
+            }
+            catch
+            {
+                this.Invoke((MethodInvoker)delegate {
+                    lstHistorico.Items.Insert(0, "Raw: " + Encoding.UTF8.GetString(e.Message));
                 });
             }
         }
 
-        private async void PreencherListaProdutos()
+        private async Task CarregarSubscricoesExistentes()
         {
             try
             {
-                using (HttpClient httpClient = new HttpClient())
+                using (HttpClient client = new HttpClient())
                 {
-                    // 1. Criar o pedido de descoberta (Discovery)
-                    var request = new HttpRequestMessage(HttpMethod.Get, $"{BaseUrl}/LojaPromocoes");
-                    request.Headers.Add("somiod-discovery", "container");
+                    client.DefaultRequestHeaders.Add("somiod-discovery", "subscription");
 
-                    var response = await httpClient.SendAsync(request);
+                    var response = await client.GetAsync($"{BaseApiUrl}/{AppName}");
 
                     if (response.IsSuccessStatusCode)
                     {
-                        string json = await response.Content.ReadAsStringAsync();
-                        var paths = JsonConvert.DeserializeObject<List<string>>(json);
+                        var json = await response.Content.ReadAsStringAsync();
+                        var caminhosSub = JsonConvert.DeserializeObject<List<string>>(json);
 
-                        cbProdutos.Items.Clear(); // Limpa a lista antes de preencher
-
-                        if (paths != null)
+                        foreach (var caminho in caminhosSub)
                         {
-                            foreach (var path in paths)
+                            var partes = caminho.Split('/');
+                            if (partes.Length >= 5)
                             {
-                                // Extrai apenas o nome do produto do caminho
-                                string[] partes = path.Split('/');
-                                cbProdutos.Items.Add(partes[partes.Length - 1]);
+                                string loja = partes[3];
+                                string produto = partes[4];
+                                string topicoParaLigar = $"{loja}/{produto}";
+
+                                LigarAoMQTT(topicoParaLigar);
+
+                                for (int i = 0; i < lstProdutos.Items.Count; i++)
+                                {
+                                    if (lstProdutos.Items[i].ToString() == produto)
+                                    {
+                                        lstProdutos.Items[i] = produto + " (Subscrito)"; 
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Erro ao carregar lista: " + ex.Message);
-            }
-        }
-
-        public bool ValidarXML(string xmlConteudo, string caminhoXsd)
-        {
-            try
-            {
-                XmlReaderSettings settings = new XmlReaderSettings();
-
-                settings.Schemas.Add(null, caminhoXsd);
-
-                settings.ValidationType = ValidationType.Schema;
-
-                settings.ValidationEventHandler += (sender, args) =>
-                {
-                    if (args.Severity == XmlSeverityType.Error)
-                        throw new Exception("Erro de Formato: " + args.Message);
-                };
-
-                using (XmlReader reader = XmlReader.Create(new StringReader(xmlConteudo), settings))
-                {
-                    while (reader.Read())
-                    {
-                    }
-
-                    return true;
-                }
-            }
 
             catch (Exception ex)
             {
-                Console.WriteLine("Promoção Inválida! Causa: " + ex.Message);
-                return false;
+                Console.WriteLine("Erro ao recuperar subscrições: " + ex.Message);
             }
-        }
-
-
-        private void lblStatus_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

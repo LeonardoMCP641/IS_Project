@@ -37,59 +37,76 @@ namespace ApplicationB
         /// </summary>
         private void InitializeComponent()
         {
+            this.lstProdutos = new System.Windows.Forms.ListBox();
             this.btnSubscrever = new System.Windows.Forms.Button();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.cbProdutos = new System.Windows.Forms.ListBox();
-            this.rtbPromocoes = new System.Windows.Forms.RichTextBox();
+            this.btnAtualizar = new System.Windows.Forms.Button();
+            this.lstHistorico = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // lstProdutos
+            // 
+            this.lstProdutos.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.lstProdutos.FormattingEnabled = true;
+            this.lstProdutos.ItemHeight = 16;
+            this.lstProdutos.Location = new System.Drawing.Point(49, 50);
+            this.lstProdutos.Name = "lstProdutos";
+            this.lstProdutos.Size = new System.Drawing.Size(251, 388);
+            this.lstProdutos.TabIndex = 0;
             // 
             // btnSubscrever
             // 
-            this.btnSubscrever.Location = new System.Drawing.Point(220, 75);
+            this.btnSubscrever.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnSubscrever.Location = new System.Drawing.Point(345, 50);
             this.btnSubscrever.Name = "btnSubscrever";
-            this.btnSubscrever.Size = new System.Drawing.Size(102, 45);
-            this.btnSubscrever.TabIndex = 0;
-            this.btnSubscrever.Text = "Ativar Subscrição";
-            this.btnSubscrever.UseVisualStyleBackColor = true;
+            this.btnSubscrever.Size = new System.Drawing.Size(100, 33);
+            this.btnSubscrever.TabIndex = 1;
+            this.btnSubscrever.Text = "Subscrever";
+            this.btnSubscrever.UseVisualStyleBackColor = false;
             this.btnSubscrever.Click += new System.EventHandler(this.btnSubscrever_Click);
             // 
-            // lblStatus
+            // btnAtualizar
             // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(217, 36);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(139, 16);
-            this.lblStatus.TabIndex = 2;
-            this.lblStatus.Text = "Status: Desconectado";
-            this.lblStatus.Click += new System.EventHandler(this.lblStatus_Click);
+            this.btnAtualizar.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnAtualizar.Location = new System.Drawing.Point(116, 7);
+            this.btnAtualizar.Name = "btnAtualizar";
+            this.btnAtualizar.Size = new System.Drawing.Size(108, 33);
+            this.btnAtualizar.TabIndex = 2;
+            this.btnAtualizar.Text = "Ver Produtos";
+            this.btnAtualizar.UseVisualStyleBackColor = false;
+            this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
             // 
-            // cbProdutos
+            // lstHistorico
             // 
-            this.cbProdutos.FormattingEnabled = true;
-            this.cbProdutos.ItemHeight = 16;
-            this.cbProdutos.Location = new System.Drawing.Point(13, 22);
-            this.cbProdutos.Name = "cbProdutos";
-            this.cbProdutos.Size = new System.Drawing.Size(169, 404);
-            this.cbProdutos.TabIndex = 3;
-            this.cbProdutos.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.lstHistorico.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.lstHistorico.FormattingEnabled = true;
+            this.lstHistorico.ItemHeight = 16;
+            this.lstHistorico.Location = new System.Drawing.Point(495, 50);
+            this.lstHistorico.Name = "lstHistorico";
+            this.lstHistorico.Size = new System.Drawing.Size(265, 388);
+            this.lstHistorico.TabIndex = 3;
             // 
-            // rtbPromocoes
+            // label1
             // 
-            this.rtbPromocoes.Location = new System.Drawing.Point(368, 221);
-            this.rtbPromocoes.Name = "rtbPromocoes";
-            this.rtbPromocoes.Size = new System.Drawing.Size(100, 96);
-            this.rtbPromocoes.TabIndex = 4;
-            this.rtbPromocoes.Text = "";
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.label1.Location = new System.Drawing.Point(539, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(178, 16);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Promoções em Tempo Real";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.rtbPromocoes);
-            this.Controls.Add(this.cbProdutos);
-            this.Controls.Add(this.lblStatus);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lstHistorico);
+            this.Controls.Add(this.btnAtualizar);
             this.Controls.Add(this.btnSubscrever);
+            this.Controls.Add(this.lstProdutos);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -97,12 +114,14 @@ namespace ApplicationB
 
         }
 
+
         #endregion
 
+        private ListBox lstProdutos;
         private Button btnSubscrever;
-        private Label lblStatus;
-        private ListBox cbProdutos;
-        private RichTextBox rtbPromocoes;
+        private Button btnAtualizar;
+        private ListBox lstHistorico;
+        private Label label1;
     }
 }
 
