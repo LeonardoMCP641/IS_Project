@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebAPI</name>
+    </assembly>
+    <members>
+        <member name="M:WebAPI.Controllers.SomiodController.DiscoverFromRoot">
+            <summary>
+            Faz a descoberta (Discovery) de todos os recursos do sistema a partir da raiz.
+            </summary>
+            <remarks>Deves enviar o header 'somiod-discovery' com: application, container, content-instance ou subscription.</remarks>
+        </member>
+        <member name="M:WebAPI.Controllers.SomiodController.CreateApplication(WebAPI.Models.ApplicationCreateDto)">
+            <summary>
+            Cria uma nova aplicação no sistema.
+            </summary>
+            <remarks>Podes enviar um nome ou deixar vazio para o sistema gerar um automático.</remarks>
+            <param name="dto">Dados da aplicação (res-type e resource-name).</param>
+            <response code="201">Criada com sucesso!</response>
+            <response code="409">Erro: Já existe uma aplicação com esse nome.</response>
+        </member>
+        <member name="M:WebAPI.Controllers.SomiodController.GetApplicationOrDiscover(System.String)">
+            <summary>
+            Mostra os dados de uma aplicação ou faz "Discovery".
+            </summary>
+            <remarks>Usa o header 'somiod-discovery' para listar contentores ou instâncias.</remarks>
+            <param name="appRn">Nome da aplicação.</param>
+        </member>
+        <member name="M:WebAPI.Controllers.SomiodController.CreateContainer(System.String,WebAPI.Models.ContainerCreateDto)">
+            <summary>
+            Cria um novo contentor dentro de uma aplicação.
+            </summary>
+            <param name="appRn">Nome da aplicação onde queres criar.</param>
+            <param name="dto">Dados do contentor.</param>
+        </member>
+        <member name="M:WebAPI.Controllers.SomiodController.CreateContentInstance(System.String,System.String,WebAPI.Models.ContentInstanceCreateDto)">
+            <summary>
+            Grava um novo dado (instância) num contentor.
+            </summary>
+            <remarks>O conteúdo pode ser texto, JSON ou XML.</remarks>
+            <param name="appRn">Nome da aplicação.</param>
+            <param name="contRn">Nome do contentor.</param>
+        </member>
+        <member name="M:WebAPI.Controllers.SomiodController.CreateSubscription(System.String,System.String,WebAPI.Models.SubscriptionCreateDto)">
+             <summary>
+             Cria um alerta para avisar sobre mudanças num contentor.
+             </summary>
+            <remarks> Podes escolher entre dois tipos de eventos: 1 (criação de instância)
+             ou 2 (remoção de instância).</remarks>
+        </member>
+        <member name="M:WebAPI.Services.MqttNotificationService.NotifyContentInstanceEvent(System.String,System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Sends a SOMIOD-compliant MQTT notification
+            evt: 1 = creation, 2 = deletion
+            </summary>
+        </member>
+    </members>
+</doc>

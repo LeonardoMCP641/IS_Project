@@ -14,9 +14,7 @@ namespace WebAPI.Controllers
         private readonly SomiodDbContext db = new SomiodDbContext();
         private readonly MqttNotificationService mqtt = new MqttNotificationService();
 
-        // =========================================================
         // Helpers
-        // =========================================================
 
         private string NowIso()
         {
@@ -56,52 +54,75 @@ namespace WebAPI.Controllers
             return name;
         }
 
-        // =========================================================
         // DISCOVERY FROM ROOT
-        // =========================================================
 
+        /// <summary>
+        /// Faz a descoberta (Discovery) de todos os recursos do sistema a partir da raiz.
+        /// </summary>
+        /// <remarks>Deves enviar o header 'somiod-discovery' com: application, container, content-instance ou subscription.</remarks>
+   
         [HttpGet, Route("")]
         public IHttpActionResult DiscoverFromRoot()
         {
+            // 1. Verificar se o utilizador enviou o header obrigatório
             if (!Request.Headers.Contains("somiod-discovery"))
-                return BadRequest();
+                return BadRequest("É obrigatório enviar o header 'somiod-discovery'.");
 
             var value = Request.Headers.GetValues("somiod-discovery").First();
 
+            // 2. Discovery de Applications (Nível 1)
             if (value.Equals("application", StringComparison.OrdinalIgnoreCase))
             {
                 var paths = db.Applications
                     .Select(a => "/api/somiod/" + a.ResourceName)
                     .ToList();
-
                 return Ok(paths);
             }
 
+            // 3. Discovery de Containers (Nível 2 - Recursivo)
+            if (value.Equals("container", StringComparison.OrdinalIgnoreCase))
+            {
+                var paths = (from c in db.Containers
+                             join a in db.Applications on c.ApplicationId equals a.Id
+                             select "/api/somiod/" + a.ResourceName + "/" + c.ResourceName)
+                            .ToList();
+                return Ok(paths);
+            }
+
+            // 4. Discovery de Content-Instances (Nível 3 - Recursivo)
             if (value.Equals("content-instance", StringComparison.OrdinalIgnoreCase))
             {
-                var paths =
-                    (from ci in db.ContentInstances
-                     join c in db.Containers on ci.ContainerId equals c.Id
-                     join a in db.Applications on c.ApplicationId equals a.Id
-                     select new
-                     {
-                         AppRn = a.ResourceName,
-                         ContRn = c.ResourceName,
-                         CiRn = ci.ResourceName
-                     })
-                    .AsEnumerable()
-                    .Select(x => $"/api/somiod/{x.AppRn}/{x.ContRn}/{x.CiRn}")
-                    .ToList();
-
+                var paths = (from ci in db.ContentInstances
+                             join c in db.Containers on ci.ContainerId equals c.Id
+                             join a in db.Applications on c.ApplicationId equals a.Id
+                             select "/api/somiod/" + a.ResourceName + "/" + c.ResourceName + "/" + ci.ResourceName)
+                            .ToList();
                 return Ok(paths);
             }
-            return BadRequest("Invalid somiod-discovery value");
+
+            // 5. Discovery de Subscriptions (Nível 3 - Recursivo com /subs/)
+            if (value.Equals("subscription", StringComparison.OrdinalIgnoreCase))
+            {
+                var paths = (from s in db.Subscriptions
+                             join c in db.Containers on s.ContainerId equals c.Id
+                             join a in db.Applications on c.ApplicationId equals a.Id
+                             select "/api/somiod/" + a.ResourceName + "/" + c.ResourceName + "/subs/" + s.ResourceName)
+                            .ToList();
+                return Ok(paths);
+            }
+
+            return BadRequest("Valor de discovery inválido. Usa: application, container, content-instance ou subscription.");
         }
 
-        // =========================================================
         // APPLICATIONS
-        // =========================================================
 
+        /// <summary>
+        /// Cria uma nova aplicação no sistema.
+        /// </summary>
+        /// <remarks>Podes enviar um nome ou deixar vazio para o sistema gerar um automático.</remarks>
+        /// <param name="dto">Dados da aplicação (res-type e resource-name).</param>
+        /// <response code="201">Criada com sucesso!</response>
+        /// <response code="409">Erro: Já existe uma aplicação com esse nome.</response>
         [HttpPost, Route("")]
         public IHttpActionResult CreateApplication([FromBody] ApplicationCreateDto dto)
         {
@@ -126,6 +147,12 @@ namespace WebAPI.Controllers
             return Content(HttpStatusCode.Created, app);
         }
 
+        /// <summary>
+        /// Mostra os dados de uma aplicação ou faz "Discovery".
+        /// </summary>
+        /// <remarks>Usa o header 'somiod-discovery' para listar contentores ou instâncias.</remarks>
+        /// <param name="appRn">Nome da aplicação.</param>
+        
         [HttpGet, Route("{appRn}")]
         public IHttpActionResult GetApplicationOrDiscover(string appRn)
         {
@@ -190,6 +217,8 @@ namespace WebAPI.Controllers
 
             return BadRequest("Invalid somiod-discovery value");
         }
+
+
         [HttpPut, Route("{appRn}")]
         public IHttpActionResult UpdateApplication(
             string appRn,
@@ -230,10 +259,15 @@ namespace WebAPI.Controllers
         }
 
 
-        // =========================================================
         // CONTAINERS
-        // =========================================================
 
+
+        /// <summary>
+        /// Cria um novo contentor dentro de uma aplicação.
+        /// </summary>
+        /// <param name="appRn">Nome da aplicação onde queres criar.</param>
+        /// <param name="dto">Dados do contentor.</param>
+        
         [HttpPost, Route("{appRn}")]
         public IHttpActionResult CreateContainer(string appRn, [FromBody] ContainerCreateDto dto)
         {
@@ -334,10 +368,14 @@ namespace WebAPI.Controllers
 
 
 
-        // =========================================================
-        // CONTENT-INSTANCES (CORRIGIDO)
-        // =========================================================
+        // CONTENT-INSTANCES 
 
+        /// <summary>
+        /// Grava um novo dado (instância) num contentor.
+        /// </summary>
+        /// <remarks>O conteúdo pode ser texto, JSON ou XML.</remarks>
+        /// <param name="appRn">Nome da aplicação.</param>
+        /// <param name="contRn">Nome do contentor.</param>
         [HttpPost, Route("{appRn}/{contRn}")]
         public IHttpActionResult CreateContentInstance(
             string appRn,
@@ -415,6 +453,15 @@ namespace WebAPI.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
+
+
+        // SUBSCRIPTIONS
+
+        /// <summary>
+        /// Cria um alerta para avisar sobre mudanças num contentor.
+        /// </summary>
+        ///<remarks> Podes escolher entre dois tipos de eventos: 1 (criação de instância)
+        /// ou 2 (remoção de instância).</remarks>
 
         [HttpPost, Route("{appRn}/{contRn}/subs")]
         public IHttpActionResult CreateSubscription(string appRn,string contRn,[FromBody] SubscriptionCreateDto dto)
